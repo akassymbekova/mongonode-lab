@@ -1,12 +1,12 @@
 const mongoose = require('mongoose');
-const Student = require('./models/Student'); // Import the Student model
+const Student = require('./models/Student'); 
 
-// Connect to MongoDB
+
 mongoose.connect('mongodb://localhost:27017/school', { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('Connected to MongoDB'))
   .catch((err) => console.error('Failed to connect to MongoDB', err));
 
-// CREATE - Insert multiple students
+
 const insertStudents = async () => {
   const students = [
     { name: 'John Doe', age: 22, major: 'Computer Science', enrolled: true },
@@ -22,7 +22,7 @@ const insertStudents = async () => {
   }
 };
 
-// READ - Retrieve all students
+
 const queryStudents = async () => {
   try {
     const students = await Student.find();
@@ -32,7 +32,7 @@ const queryStudents = async () => {
   }
 };
 
-// UPDATE - Update a specific student's information
+
 const updateStudent = async () => {
   try {
     const updatedStudent = await Student.findOneAndUpdate(
@@ -46,7 +46,7 @@ const updateStudent = async () => {
   }
 };
 
-// DELETE - Delete a specific student
+
 const deleteStudent = async () => {
   try {
     await Student.deleteOne({ name: 'Mike Johnson' });
@@ -56,14 +56,14 @@ const deleteStudent = async () => {
   }
 };
 
-// Run CRUD operations
+// Running all CRUD operations
 const runCRUDOperations = async () => {
   await insertStudents();
   await queryStudents();
   await updateStudent();
   await deleteStudent();
-  await queryStudents(); // Check remaining students after deletion
+  await queryStudents(); 
 };
 
-// Execute the operations
+
 runCRUDOperations();
